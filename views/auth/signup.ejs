@@ -1,0 +1,29 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main>
+            <form action="/auth/signup" class="d-flex justify-content-center mt-2" method="POST">
+                <div class="container w-50 p-5 signupForm pt-4">
+                    <h1 class="h3 text-center mb-3 p-0 fw-bold">Sign Up</h1>
+                    <hr>
+                    <div class="mb-3">
+                        <div class="mb-3">
+                            <label for="" class="form-label">Name</label>
+                            <input type="text" name="name" id="" class="form-control" placeholder="name..." aria-describedby="helpId">
+                        </div>
+                        <label for="" class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" id="" aria-describedby="emailHelpId" placeholder="abc@gmail.com">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password" id="" placeholder="">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+    </main>
+<%- include('../includes/end.ejs') %>

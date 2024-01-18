@@ -1,0 +1,18 @@
+.login-form {
+  width: 20rem;
+  max-width: 90%;
+  margin: auto;
+  display: block;
+}
+.reset-link a {
+  color: #d1a222;
+  font-size: 0.9rem;
+  transition-duration: 0.4s;
+}
+.reset-link a {
+  /* text-decoration: none;
+  list-style: none; */
+}
+.reset-link a:hover {
+  color: #1f1f1f;
+}

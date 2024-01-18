@@ -1,0 +1,76 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/chat.css">
+</head>
+
+<body class="d-flex flex-column">
+    <div class="container-fluid p-0 mt-0">
+        <%- include('../includes/navigation.ejs') %>
+    </div>
+    <div class="chat-container mt-4 mb-4">
+        <div class="chat-list">
+            <h1 class="mb-4 h4">Chats</h1>
+            <div class="chat-search">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="chat-search-input" placeholder="Search">
+            </div>
+            <ul class="d-flex flex-column justify-content-center m-0 p-0">
+                <% chats.forEach(chat => { %>
+                    <a class="" href="/chat/<%= chat.id %>">
+                        <li class="chat-list-item"><%= chat.name %></li>
+                    </a>
+                <% }); %>
+            </ul>
+        </div>
+
+        <% if (path !== '/chats' && isAuthenticated) { %>
+            <!-- Display chat window with selected chat details -->
+            <div class="chat-window">
+                <div class="chat-header">
+                    <h2 class="h3"><%= selectedChat.name %></h2>
+                </div>
+                <div class="chat-messages" id="chatMessagesContainer">
+                    <!-- Display chat messages here -->
+                    <% messages.forEach(message => { %>
+                        <div class="chat-message d-flex <%= (message.sender_id === loggedInUser.id) ? 'justify-content-end' : 'justify-content-start' %>">
+                            <div class="chat-message-content <%= (message.sender_id === loggedInUser.id) ? 'user' : '' %>">
+                                <p><%= message.message_body %></p>
+                                <!-- <span class="fs-smaller p"> <small> Chat ID: <%= selectedChat.id %></small></span> <br> -->
+                                <span class="span_time_div text-muted"><small><%= message.message_timestamp.toLocaleString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true }) %></small></span>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+                <div class="chat-input ">
+                    <form action="/chat/send" class="d-flex justify-content-between gap-2 p-3" method="POST">
+                        <input type="text" class="chat-input-field" placeholder="Type a message" name="body">
+                        <input type="hidden" name="chatId" value="<%= selectedChat.id %>">
+                        <button class="chat-send-button" type="submit">Send</button>
+                    </form>
+                </div>
+            </div>
+        <% } else { %>
+            <!-- Display message when no chat is selected -->
+            <div class="noChats container p-0">
+                <div class="chat-header d-flex">
+                    <h2 class="h5">No Chat Selected</h2>
+                </div>
+                <div class="chat-window">
+                    <div class="d-flex flex-column justify-content-center align-items-center mt-5">
+                    <h2 class="h4 mt-5">Click on a chat to see messages!</h2>
+                        <a href="/">
+                            <button type="button" class="btn btn-primary mt-4">Start Chat</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    </div>
+
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var chatMessagesContainer = document.getElementById('chatMessagesContainer');
+            chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+        });
+    </script>
+    <%- include('../includes/end.ejs') %>

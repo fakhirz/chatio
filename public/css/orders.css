@@ -1,0 +1,108 @@
+.orders {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.orders__item h1 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.orders__item {
+  background-color: white;
+  /* background-color: rgb(248, 248, 248); */
+  text-align: right;
+  box-shadow: 2px 3px 7px 4px rgb(0 0 0 / 19%);
+  border-radius: 16px;
+  padding: 1rem;
+  margin-bottom: 2.1rem;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -o-border-radius: 16px;
+}
+.orders__item div {
+  /* box-shadow: 0 0px 15px 3px rgba(0, 0, 0, 0.144); */
+  border-radius: 10px;
+  /* text-align: center; */
+  border: 5px dashed #f3d753;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  background-color: #f8f3db;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.orders__item .statusTag {
+  /*box-shadow: 0 0px 15px 3px rgba(0, 0, 0, 0.144);
+  */
+  text-align: center;
+  background-color: #ffc107;
+  color: #fff;
+  padding: 5px 7px;
+  white-space: nowrap;
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 0;
+  margin-bottom: -80px;
+}
+.orders__item div h5 {
+  color: black;
+}
+.orders__item div h5 span {
+  color: #eebc36;
+  border-bottom: 1px dashed #1f1f1f;
+}
+.orders__item div h5 span a {
+  list-style: none;
+  text-decoration: none;
+  color: purple;
+  border-bottom: 1px dashed #1f1f1f;
+}
+.orders__item div h5 span a:hover {
+  list-style: none;
+  text-decoration: none;
+  color: #eebc36;
+  border-bottom: 1px dashed #1f1f1f;
+}
+
+.orders__products {
+  list-style: none;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: space-around;
+  padding: 0;
+}
+
+.orders__products-item {
+  background-color: white;
+  /* border: 3px solid rgb(207, 207, 207); */
+  display: flex;
+  flex-direction: row;
+  min-width: 49%;
+  align-items: center;
+  box-shadow: 1px 1px 5px 1px rgb(0 0 0 / 15%);
+  border-radius: 12px;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+}
+.orders__products-item p {
+  padding-left: 15px;
+}
+
+li img {
+  width: 60px;
+  height: 60px;
+}
+hr {
+  display: block;
+  color: black;
+  border: 2px solid black;
+}

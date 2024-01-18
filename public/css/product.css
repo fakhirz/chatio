@@ -1,0 +1,140 @@
+.product-form {
+  width: 35rem;
+  max-width: 90%;
+  margin: auto;
+  display: block;
+}
+
+.product-item {
+  width: 15rem;
+  background-color: white;
+  border: none;
+}
+
+.product__title {
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.product__price {
+  text-align: center;
+  color: #4d4d4d;
+}
+
+.product__description {
+  text-align: center;
+}
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.cart-heading {
+  font-size: 26px;
+}
+.cart-container .cart-table thead tr th {
+  font-size: 16px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  /* box-shadow: 0 0 24px 9px rgba(93, 93, 93, 0.193); */
+  box-shadow: 0 0 24px 9px #00695c;
+  border: 1px solid rgba(211, 211, 211, 0.372);
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+}
+
+.cart-table th,
+.cart-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-table th {
+  background-color: white;
+}
+
+.cart-table td.product {
+  display: flex;
+  align-items: center;
+}
+
+.cart-table td.product img {
+  width: 80px;
+  height: 80px;
+  margin-right: 2px;
+}
+
+.cart-table td.actions {
+  text-align: start;
+}
+
+.cart-table .product-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.cart-table .quantity {
+  font-size: 8px;
+  color: #888;
+  /* margin-top: 5px; */
+}
+
+.cart-table .delete-button {
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  padding: 10px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.empty-cart {
+  text-align: center;
+  margin: 50px 0;
+  color: #888;
+}
+
+.signupForm{
+  /* margin-top: 50px; */
+  border-radius: 18px;
+  background-color: rgba(255, 255, 255, 0.923) !important;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  -ms-border-radius: 18px;
+  -o-border-radius: 18px;
+  /* box-shadow: 0 15px 50px #00695d64; */
+  box-shadow: 0 15px 50px #3d686064;
+}
+#modal_header{
+  background-color: rgba(5, 131, 87, 0.842);
+}
+.signupForm h1{
+  color: #004940 !important;
+}
+.signupForm hr{
+  color: white;  
+  border-bottom: 8px dashed #0049407a;
+}
+.cardHR hr{
+  color: white;  
+  border-bottom: 4px dotted #0049407a;
+}
+.chat-btn:hover{
+  background-color: #007a6c !important;
+  /*transition-duration: 0.1s !important;
+  */box-shadow: 0 20px 30px #2a89783b;
+  /*transform: translateX(4px) rotate(4deg) translateY(2px);
+  */border: none;
+}

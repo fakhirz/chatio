@@ -1,0 +1,83 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <% if (users.length > 0) { %>
+            <div class="signupForm shadow-none mb-4 d-flex justify-content-center">
+                <h1 class="h2 text-center p-0">Available Users:</h1>
+            </div>
+            <div class="grid mt-2">
+                <% for (let user of users) { %>
+                    <% if(user.id !== loggedInUser.id){ %>
+                        <div class="card product-item">
+                            <header class="card__header mb-0 pb-1">
+                                <h2 class="product__price"><%= user.name %></h2>
+                                <div class="shadow-none cardHR">
+                                    <hr>
+                                </div>
+                                <p class="product__title text-muted fw-light"><%= user.email %> </p>
+                            </header>
+                            <div class="card__content mt-0 pt-0 d-flex justify-content-center p-3">
+                                <!-- <button type="button" class="h1 btn btn-primary chat-btn mb-3">Chat</button> -->
+                                <form action="/chat/new" method="POST">
+                                <% if (!loggedInUser) { %> 
+                                    <a href="/auth/login">
+                                        <button type="button" class="h1 btn btn-primary chat-btn mb-3">Login</button>
+                                    </a>
+                                     <% } else if (user.haveChat !== 0) { %>
+                                        <a href="/chat/<%= user.haveChat %>">
+                                            <button type="button" class="h1 btn btn-primary chat-btn mb-3">Message</button>
+                                        </a>
+                                        <% } else { %>
+                                            <button type="button" class="h1 btn btn-primary chat-btn mb-3 addChatButton" data-bs-toggle="modal" data-bs-target="#newChatModal" data-chat-user-id="<%= user.id %>">New Chat</button>
+                                        <% } %>
+                                </form>
+                            </div>
+                        </div>
+                    <% } %>
+                <% } %>
+            </div>
+        <% } else { %>
+            <div class="w-100 h-100 d-flex justify-content-center align-items-center">
+                <div class="signupForm w-50 d-flex justify-content-center align-items-center">
+                    <h1 class="h2 p-3">No User Found!</h1>
+                </div>
+            </div>
+        <% } %>
+    </main>
+    <div class="modal fade border-none" id="newChatModal" tabindex="-1" aria-labelledby="newChatModalLabel" aria-hidden="true">
+        <div class="modal-dialog border-none">
+            <div class="modal-content">
+                <div class="modal-header" id="modal_header">
+                    <h5 class="modal-title text-white h4" id="newChatModalLabel">New Chat</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/chat/new" method="POST">
+                        <div class="mb-3">
+                            <label for="chatName" class="form-label">Enter Chat Name</label>
+                            <input type="text" class="form-control" id="chatName" name="name" required>
+                            <input type="hidden" class="form-control" id="chatUserId" name="chatUserId" >
+                        </div>
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var newChatModal = new bootstrap.Modal(document.getElementById('newChatModal'));
+    
+            newChatModal._element.addEventListener('show.bs.modal', function (event) {
+                var button = event.relatedTarget;
+                var chatUserId = button.dataset.chatUserId;
+                document.getElementById('chatUserId').value = chatUserId;
+            });
+        });
+    </script>
+<%- include('../includes/end.ejs') %>
