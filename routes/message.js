@@ -17,7 +17,7 @@ const postMessage = async (req, res, next) => {
 	message
 		.save()
 		.then((result) => {
-			res.redirect(`/chat/${chatId}`);
+			return res.redirect(`/chat/${chatId}`);
 		})
 		.catch((err) => console.log(err));
 };

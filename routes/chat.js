@@ -12,8 +12,6 @@ const getChats = async (req, res, next) => {
 		const userChats = await Chat.getAllUserChats(userId);
 		const chats = userChats[0];
 		const messages = await Message.fetchByChatId(chats.map((chat) => chat.id));
-		// console.log('ALL USER MESSAGES: ', messages);
-
 		res.render('chat/chat', {
 			chats: chats,
 			messages: messages[0],
@@ -38,14 +36,14 @@ const postChat = async (req, res, next) => {
 		const existingChat = await Chat.getExistingUserChatId(chatUserId, userId);
 		if (existingChat[0].length > 0) {
 			const existingChatID = existingChat[0][0].chat_id;
-			res.redirect(`/chat/${existingChatID}`);
+			return res.redirect(`/chat/${existingChatID}`);
 		} else {
 			const [ chatResult ] = await chat.save();
 			const participants = [ chatUserId, userId ];
 			participants.forEach(async (id) => {
 				const [ chatMiddle ] = await chat.saveMiddle(id, chatResult.insertId);
 			});
-			res.redirect(`/chat/${chatResult.insertId}`);
+			return res.redirect(`/chat/${chatResult.insertId}`);
 		}
 	} catch (err) {
 		console.log(err);

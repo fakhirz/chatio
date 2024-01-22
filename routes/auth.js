@@ -44,7 +44,7 @@ const postSignup = (req, res, next) => {
 	user
 		.save()
 		.then((result) => {
-			res.redirect('/');
+			return res.redirect('/');
 		})
 		.catch((err) => console.log(err));
 };
@@ -70,10 +70,10 @@ const postLogin = (req, res, next) => {
 			if (user) {
 				const token = createToken(user);
 				res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-				res.redirect('/');
+				return res.redirect('/');
 			} else {
 				console.log('Wrong Credentials!');
-				res.redirect('/auth/login');
+				return res.redirect('/auth/login');
 			}
 		})
 		.catch((err) => {
@@ -82,7 +82,7 @@ const postLogin = (req, res, next) => {
 };
 const postLogout = async (req, res, next) => {
 	res.clearCookie('jwt');
-	res.redirect('/');
+	return res.redirect('/');
 };
 
 router.post('/signup', postSignup);

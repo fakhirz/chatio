@@ -12,13 +12,13 @@ const isAuth = async (req, res, next) => {
 		jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, decodedToken) => {
 			if (err) {
 				console.log(err);
-				res.status(httpCodes.NOT_LOGGED_IN).send('User not Authenticated!');
+				return res.status(httpCodes.NOT_LOGGED_IN).send('User not Authenticated!');
 			} else {
 				await db
 					.execute('SELECT * FROM user WHERE `id` = ?', [ decodedToken.id ])
 					.then((user) => {
 						if (!user) {
-							res.status(httpCodes.NOT_LOGGED_IN).send('User Not Found');
+							return res.status(httpCodes.NOT_LOGGED_IN).send('User Not Found');
 						}
 						req.user = user[0];
 					})
@@ -27,18 +27,8 @@ const isAuth = async (req, res, next) => {
 			}
 		});
 	} else {
-		res.status(httpCodes.NOT_LOGGED_IN).redirect('/auth/login');
+		return res.status(httpCodes.NOT_LOGGED_IN).redirect('/auth/login');
 	}
 };
 
 module.exports = isAuth;
-
-// await User.findOne({ _id: decodedToken.id })
-// 	.then((user) => {
-// 		if (!user) {
-// 			res.status(httpCodes.NOT_LOGGED_IN).send('User Not Found');
-// 		}
-// 		req.user = user;
-// 	})
-// 	.catch((err) => console.log(err));
-// next();
